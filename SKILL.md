@@ -10,13 +10,15 @@ description: 小说术语表 AI 审查工具（韩中 / 日中）。逐词审查
 用户输入 `/glossary-review [目录路径] [--lang ko|ja|auto]` 时。
 
 参数：
-- `目录路径`：可选，缺省为当前对话上下文中已 `@` 的目录。
+- `目录路径`：**必需**。必须等待用户显式提供目录路径（通过参数、`@` 引用、或后续消息）后才能开始审查。**绝对不要根据工作目录或上次会话自动猜测目录并开始审查。**
 - `--lang`：可选，`ko`（默认）/ `ja` / `auto`（按术语原文自动判定）。
 
 示例：
-- `/glossary-review` — 当前目录，韩语
+- `/glossary-review ./novels/some_novel` — 指定目录，韩语
 - `/glossary-review ./novels/some_novel --lang ja` — 指定目录，日语
-- `/glossary-review --lang auto` — 自动检测
+- `/glossary-review --lang auto` — 等待用户提供目录后自动检测
+
+**若用户未提供目录路径**：询问用户 "请提供要审查的术语表目录路径"，等待回复后再继续。不得自行扫描或猜测。
 
 ---
 
